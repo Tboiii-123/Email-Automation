@@ -18,8 +18,8 @@ from email.mime.base import MIMEBase
 from email import encoders
 
 
-#make sure u delete your password before uploading to the github
-passwordName ='roue egvy bumj wkez'
+#make sure u remove your password before uploading to the github
+passwordName =''
 
 
 
