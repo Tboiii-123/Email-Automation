@@ -1,0 +1,346 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mail Automation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+    
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            background-color: black;
+            color: white;
+        }
+        header{
+            background-color: rgb(61, 61, 61);
+
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+        header h1{
+            text-align: center;
+            font-size: 30px;
+            font-family:'Courier New', Courier, monospace ;
+        }
+        
+/* Section 1*/
+
+        .section1{
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            
+        }
+        .section1 table{
+            width: 60%;
+            border-collapse: collapse;
+        }
+        .section1 table tr  textarea {
+            margin:5px;
+            width: 90%;
+            height: 240px;
+            background-color: rgb(61, 61, 61);
+            color: white;
+            padding-left: 1%;
+        }
+                    @media(max-width:700px){
+                .section1 table{
+                    width: 90%;
+                    border-collapse: collapse;
+                }
+                
+                .section1 table tr  textarea {
+                    margin:5px;
+                    width: 100%;
+                    height: 240px;
+                    background-color: rgb(61, 61, 61);
+                    color: white;
+                    padding-left: 1%;
+                }
+                
+            }
+
+
+
+
+
+
+/* Section2 */
+
+        
+        .section2{
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+            
+        }
+        .section2 p{
+            font-size: 30px;
+            padding-bottom: 20px;
+        }
+
+     .section2 table {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 60%;
+        }
+
+
+        .section2 table input {
+            width: 100%;
+            height: 40px;
+            background-color: rgb(61, 61, 61);
+            color: white;
+            padding-left: 1%;
+        }
+        
+
+
+
+        .section2 table td {
+            padding: 10px;
+        }
+            
+        @media(max-width:700px){
+                
+     .section2 table {
+        margin-top: 20px;
+        border-collapse: collapse;
+        width: 100%;
+    }
+        }
+
+
+        
+        .section3{
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+        }
+        .section3 p{
+            font-size: 30px;
+            padding-bottom: 20px;
+        }
+    
+        .section3 table {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 60%;
+        }
+
+
+        .section3 table input {
+            width: 100%;
+            height: 40px;
+            background-color: rgb(61, 61, 61);
+
+            color: white;
+            
+        }
+        .section3 table tr td #textarea{
+            width: 100%;
+            
+            background-color: rgb(61, 61, 61);
+
+            color: white;
+            
+        }
+        .section3 table tr td button{
+            padding:10px  50px;
+            color: white;
+            background-color: rgb(61, 61, 61);
+            
+
+        }
+
+        .section3 table td {
+          padding: 10px;
+        }
+        .section3  #uploadImage{
+            cursor: pointer;
+        }
+        
+        .section3  #fileInput{
+            display: none;
+        }
+
+        
+
+        @media(max-width:700px){
+
+            
+     .section table {
+        margin-top: 20px;
+        border-collapse: collapse;
+        width: 100%;
+     }
+            .section3 table {
+                margin-top: 20px;
+                border-collapse: collapse;
+                width: 98%;
+            }
+            
+        }
+
+    </style>
+    
+</head>
+
+    
+{% if messages%}
+        
+  
+{% for message in messages %}
+
+    {% if 'error' in message.tags %}
+
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+
+  {% elif 'success' in message.tags %}
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+
+  {% elif 'warning' in message.tags %}
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+
+  {% elif 'info' in message.tags %}
+
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+
+  {% else %}
+
+    <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+
+  {% endif %}
+  
+    {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          
+      
+{% endfor %}
+
+{% endif %}
+
+
+<body>
+    
+        <header>
+
+            <h1>Recipients</h1>
+        
+        </header>
+
+
+<form method="POST"  action=""  enctype="multipart/form-data">
+                                
+    {% csrf_token%}
+        
+
+    <section class="section1">
+
+        <table border="1">
+            <tr>
+                <td>
+                    <textarea name="usernames" id="" cols="30" rows="15" placeholder="Recipient names each on a new line"></textarea>
+                
+                </td>
+                <td>
+                    <textarea name="mails" id="" cols="30" rows="15" placeholder="Recipient emails each on a new line"></textarea>
+             
+                </td>
+            </tr>
+            
+        </table>
+
+    </section>
+        
+        
+        
+
+        <section class="section2">
+
+            <p>From & Reply-To</p>
+            
+
+            <table border="1">
+            
+                <tr>
+                    <td> <input type="text" placeholder="Sender Name" name="sname" id="sender"></td>
+                    <td><input type="text" value="joshhearns37@gmail.com"  name="smail"></td>
+                </tr>
+                <tr>
+                    
+                    <td > <input type="text" placeholder="Reply-To Name" name="rname" ></td>
+                    <td><input type="email" placeholder="Reply-To Email" name="rmail"></td>
+                </tr>
+                
+            </table>
+
+        </section>
+
+
+        <section class="section3">
+                    <p>Title & Email</p>
+                    <table border="1">
+                        <tr>
+                            
+                            <td>
+                                <input type="text" placeholder="Email title" name="etitle">
+                            
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>              
+                                <textarea name="ebody" placeholder="Insert Your Message Here"  cols="30" rows="16" id="textarea" ></textarea>
+                            
+                                <button type='submit'>SUBMIT</button>
+                                <img src="{% static 'img/attach.png' %}"  alt="" id="uploadImage">
+                                <!-- webkitdirectory allows folder upload -->
+                                <!-- Multiple allows multiple files upload -->
+                                <input type="file" id="fileInput"  multiple   name="file" >
+
+        
+                            </td>
+        
+                            
+                        </tr>
+        
+                    </table>
+
+        </section>
+
+</form>
+
+
+<script>
+    document.getElementById('uploadImage').addEventListener('click', function() {
+        document.getElementById('fileInput').click();
+    });
+
+    document.getElementById('fileInput').addEventListener('change', function(event) {
+        if (event.target.files.length > 0) {
+            alert(`You selected ${event.target.files.length} file(s).`);
+        }
+    });
+</script>
+
+
+
+</body>
+</html>

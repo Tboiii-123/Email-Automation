@@ -1,0 +1,78 @@
+from django.shortcuts import render
+
+# Create your views here.
+
+#For sending Emails
+import smtplib
+
+#For pop up messages
+from django.contrib import messages
+
+
+#Email and password for the server
+
+
+#make sure u delete your password before uploading to the github
+passwordName ='roue egvy bumj wkez'
+
+
+
+
+
+            
+            
+
+
+                   
+
+
+def my_mail(request):
+
+    if request.method =="POST":
+        
+        sender_name =request.POST.get('sname')
+
+        sender_mail = request.POST.get('smail')
+
+        reciever_name =request.POST.get('rname')
+
+        reciever_mail =request.POST.get('rmail')
+
+        email_title =request.POST.get('etitle')
+
+        email_body =request.POST.get('ebody')
+
+        Message =f'{email_title} \n \n  {email_body}'
+
+        
+
+        try:
+                
+            
+            server =smtplib.SMTP('smtp.gmail.com', 587)
+            
+            server.starttls()
+            
+            server.login(sender_mail,passwordName)
+            
+            server.sendmail(sender_mail,reciever_mail,Message)
+
+            server.quit()
+
+            messages.success(request,('Email Sent Successfully......'))
+                    
+
+        except Exception as e:
+
+            messages.error(request,('There is an error pls Retry again......'))
+                    
+
+
+
+            
+
+
+
+    return render(request,'index.html',{
+
+    })
