@@ -1,5 +1,6 @@
 # Email-Automation
 A website for sending mails to multiple users and also attachment at the same time. 
+
 #User should write their passkey generated from their email as their password to be able to send messages to other mails
 
 #Features
@@ -14,8 +15,11 @@ A website for sending mails to multiple users and also attachment at the same ti
 
 
 #Technology Used
+
 -Python (Django Framework)
+
 -HTML/CSS/JavaScript/Bootstrap
+
 -SMTP module for automation of sending emails
 
 Contact
